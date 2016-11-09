@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="forum">
+<head>
+    <meta charset="UTF-8">
+    <title>Fora by Robusta Code</title>
+    <link rel="stylesheet" type="text/css" href="../css/fora.css"/>
+    <title>Forum</title>
+
+    <script type= text/javascript src="materialize/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../javascripts/libs/angular.min.js"></script>
+    <script type="text/javascript" src="../javascripts/mock-data.js"></script>
+    <script type="text/javascript" src="forum.js"></script>
+
+    <style>
+        .like{
+            color : green;
+        }
+        .dislike{
+             color: red;
+        }
+
+    </style>
+
+</head>
+<body ng-controller="AppCtrl">
+
+<h2> Utilisateurs : </h2>
+<ul>
+    <li ng-repeat="user in users">{{user.id}}: {{user.name}}, {{user.email}}</li>
+
+</ul>
+
+<h2> Titres : </h2>
+
+<ul>
+    <li ng-repeat="topic in topics">{{topic.title}}
+        <ul>
+            <li ng-repeat="comment in topic.comments" ng-if="comment.user.name != NULL"> {{comment.user.name}} says : {{comment.content}} </li>
+            <li ng-repeat="comment in topic.comments" ng-if="comment.user.name == NULL"> Anonymous says : {{comment.content}} </li>
+        </ul>
+    </li>
+
+</ul>
+
+
+</body>
+
+<script type="text/javascript">
+
+
+    angular.module("forum", [])
+            .controller("AppCtrl", function ($scope) {
+
+                $scope.users = globals.users;
+
+                $scope.topics = globals.topics;
+
+            });
+
+
+
+
+</script>
+
+</html>

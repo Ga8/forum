@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="../css/fora.css"/>
     <title>Forum</title>
 
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
     <script type= text/javascript src="materialize/js/materialize.min.js"></script>
     <script type="text/javascript" src="../javascripts/libs/angular.min.js"></script>
     <script type="text/javascript" src="../javascripts/mock-data.js"></script>
@@ -25,8 +26,8 @@
 <body ng-controller="AppCtrl">
 
 <h2> Utilisateurs : </h2>
-<ul>
-    <li ng-repeat="user in users">{{user.id}}: {{user.name}}, {{user.email}}</li>
+<ul class="collection">
+    <li class= "collection-item" ng-repeat="user in users">{{user.id}}: {{user.name}}, {{user.email}}</li>
 
 </ul>
 
@@ -39,27 +40,35 @@
             <li ng-repeat="comment in topic.comments" ng-if="comment.user.name == NULL"> Anonymous says : {{comment.content}} </li>
         </ul>
     </li>
-
 </ul>
+    
+<form >
+    <select ng-model="model.selectedTopic" ng-options="item.title for item in topics"> </select>
+
+    <h2> Comments from {{model.selectedTopic.title}}</h2>
+        <p ng-repeat="comment in model.selectedTopic.comments"> {{comment.user.name}} : {{comment.content}}</p>
+
+
+    <form>
+        <select ng-model="commentModel.user"
+                ng-options="item.name for item in users"></select>
+
+        <p> user chosen : {{model.user.name}}</p>
+
+
+        <textarea ng-model="commentModel.content" required></textarea>
+        <button ng-click="createComment(commentModel)"> Envoyer </button>
+
+    </form>
+
+
+
+
+</form>
+    
 
 
 </body>
 
-<script type="text/javascript">
-
-
-    angular.module("forum", [])
-            .controller("AppCtrl", function ($scope) {
-
-                $scope.users = globals.users;
-
-                $scope.topics = globals.topics;
-
-            });
-
-
-
-
-</script>
 
 </html>

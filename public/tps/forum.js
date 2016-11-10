@@ -1,7 +1,28 @@
+console.log("in file");
+
 angular.module("forum", [])
-    .controller("ForumController", function($scope, $http, userService)  {
-     
-     
+    .controller("AppCtrl", function($scope, $http, userService)  {
+
+        $scope.users = globals.users;
+
+        $scope.topics = globals.topics;
+        $scope.model={
+            selectedTopic:undefined
+        };
+
+        $scope.commentModel={
+            user:undefined,
+            content:undefined
+        };
+
+
+
+        $scope.createComment=function(commentModel){
+
+
+            $scope.model.selectedTopic.comments.
+            push(angular.copy(commentModel));
+        }
 
     })
     

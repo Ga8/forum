@@ -11,6 +11,7 @@
     <script type="text/javascript" src="../javascripts/libs/angular.min.js"></script>
     <script type="text/javascript" src="../javascripts/mock-data.js"></script>
     <script type="text/javascript" src="forum.js"></script>
+    <script type="text/javascript" src="components/comment.component.js"></script>
 
     <style>
         .like{
@@ -41,7 +42,7 @@
         </ul>
     </li>
 </ul>
-    
+
 <form >
     <select ng-model="model.selectedTopic" ng-options="item.title for item in topics"> </select>
 
@@ -65,9 +66,9 @@
 
 
 </form>
-    
-
-
+<comment> </comment>
+<div ></div>
+<style> width: 250px , height:250px </style>
 </body>
 
 
